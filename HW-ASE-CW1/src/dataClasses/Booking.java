@@ -9,7 +9,7 @@ public class Booking {
 	private String  BookingDate;
 
 	private Passenger passenger;
-//	private String  FlightCode;
+//	private String  FlightCode;fsdfsdfsd fsdfs
 	private Flight  flight;
 	public Flight getFlight() {
 		return flight;
