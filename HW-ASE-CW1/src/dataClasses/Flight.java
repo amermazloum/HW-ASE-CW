@@ -5,6 +5,14 @@ public class Flight {
 	private String  FlightCode;
 	private Carrier  carrier;
 	private String  FlightDate;
+	public String getFlightDate() {
+		return FlightDate;
+	}
+
+	public void setFlightDate(String flightDate) {
+		FlightDate = flightDate;
+	}
+
 	private String  FlightTime;
 	private Integer MaxAllowedWeight;	
 	private Integer ExtraChargePerKg;

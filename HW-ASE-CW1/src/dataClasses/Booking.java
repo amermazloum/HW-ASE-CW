@@ -1,40 +1,78 @@
 package dataClasses;
-import javax.swing.JOptionPane;
-
 
 import exception.*;
 public class Booking {
 	
 	
 	private String  BookingReference;
+	
 	private String  BookingDate;
 
 	private Passenger passenger;
-	private String  FlightCode;
-	
+//	private String  FlightCode;
+	private Flight  flight;
+	public Flight getFlight() {
+		return flight;
+	}
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
 	private boolean CheckIn;
+	
 	private String  CheckInDate;
 	private String  CheckInTime;
 	
 	private Integer CheckedInWeight;
 	private String  BaggageDimension;
 	
+	public String getBookingDate() {
+		return BookingDate;
+	}
+	public void setBookingDate(String bookingDate) {
+		BookingDate = bookingDate;
+	}
+	public boolean isCheckIn() {
+		return CheckIn;
+	}
+	public void setCheckIn(boolean checkIn) {
+		CheckIn = checkIn;
+	}
+	public String getCheckInDate() {
+		return CheckInDate;
+	}
+	public void setCheckInDate(String checkInDate) {
+		CheckInDate = checkInDate;
+	}
+	public String getCheckInTime() {
+		return CheckInTime;
+	}
+	public void setCheckInTime(String checkInTime) {
+		CheckInTime = checkInTime;
+	}
+	public void setBookingReference(String bookingReference) {
+		BookingReference = bookingReference;
+	}
+	public void setPassenger(Passenger passenger) {
+		this.passenger = passenger;
+	}
 	
 
+
 	public Booking(String BookingReference, Passenger PassengerData,
-			String FlightCode,boolean CheckIn) throws IllegalArgumentException
+			Flight flight,boolean CheckIn) throws IllegalArgumentException
 	{
 		
 		/* Added by Faisal*/
 		if(BookingReference.trim().length() == 0 || PassengerData == null
-				|| FlightCode.trim().length() == 0) 
+				|| flight == null) 
 		{			
 			throw new IllegalArgumentException("Booking Reference, Passenger Name & Flight Code Cannot be blank");
 		}	
 		
 		this.BookingReference = BookingReference;
 		this.passenger = PassengerData;
-		this.FlightCode = FlightCode;
+		this.flight = flight;
 		this.CheckIn = CheckIn;		
 				
 	}
@@ -89,12 +127,7 @@ public class Booking {
 		
 	}
 	
-	public String getFlightCode() {
-		
-		return FlightCode;
-	}
 	
-
 	public Integer getCheckedInWeight() {
 		return CheckedInWeight;
 	}

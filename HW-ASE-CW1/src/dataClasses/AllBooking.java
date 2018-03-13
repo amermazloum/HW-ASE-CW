@@ -90,7 +90,7 @@ private HashMap<String,Booking> bookingList;
 	{		
 		/* Modified by Amer*/
 		if (IsValidBookingReference(a.getBookingReference()))
-			if (IsValidFlightCode(a.getFlightCode()))
+			if (IsValidFlightCode(a.getFlight().getFlightCode()))
 		bookingList.put(a.getBookingReference(), a);	
 	}
 	

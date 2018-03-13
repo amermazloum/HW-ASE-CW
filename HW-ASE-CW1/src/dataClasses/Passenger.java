@@ -40,6 +40,14 @@ public class Passenger {
 	private String  passengerFName;
 	private String  passengerLName;
 	private String  Passport;
+	public String getPassport() {
+		return Passport;
+	}
+
+	public void setPassport(String passport) {
+		Passport = passport;
+	}
+
 	private String  address;
 	private String  mobileNumber;
 	private Date  DOB;
