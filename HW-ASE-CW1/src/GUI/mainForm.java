@@ -70,7 +70,7 @@ public class mainForm extends JFrame {
 		dataload=new DataLoad(bookingsPath,flightsPath);
 		dataload.PopulateAllBookings();
 		dataload.PopulateAllFlight();
-		
+		dataload.getFlightList();
 		
 	}
 	
