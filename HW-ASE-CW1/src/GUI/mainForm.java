@@ -1,32 +1,29 @@
 package GUI;
 
 
-
-
-
 import java.awt.EventQueue;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import java.awt.GridLayout;
-import javax.swing.JButton;
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import java.awt.FlowLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
+
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+
+
+import dataClasses.DataLoad;
 
 public class mainForm extends JFrame {
-
+    private DataLoad dataload;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -35,7 +32,6 @@ public class mainForm extends JFrame {
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
-
 
 	/**
 	 * Launch the application.
@@ -65,12 +61,19 @@ public class mainForm extends JFrame {
 		
 		prepareHeader();
 		prepareQueues();
+		ClassLoader classLoader = getClass().getClassLoader();
+		
+		String bookingsPath = classLoader.getResource("Bookings.txt").getPath();
+		String flightsPath  = classLoader.getResource("FlightsInfo.txt").getPath();
 		
 		
+		dataload=new DataLoad(bookingsPath,flightsPath);
+		dataload.PopulateAllBookings();
+		dataload.PopulateAllFlight();
 		
 		
 	}
-
+	
 	
 	private void prepareHeader() {
 		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));

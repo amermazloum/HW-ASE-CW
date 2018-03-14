@@ -1,32 +1,40 @@
 package dataClasses;
 
-import java.sql.Date;
+import java.util.Date;
 /*Added By Amer*/ 
 public class Passenger {
-
-	public Passenger(Integer passengerId, String passengerFName, String passengerLName) throws IllegalArgumentException{
+	
+	private Integer passengerId;
+	private String  passengerFName;
+	private String  passengerLName;
+	private String  Passport;
+	private String  address;
+	private String  mobileNumber;
+	private Date  DOB;
+	
+	public Passenger(Integer passengerId, String passengerLName, String Passport) throws IllegalArgumentException{
 		super();
-		if(passengerId == 0 || passengerFName.trim().length() == 0
-				|| passengerLName.trim().length() == 0) 
+		if(passengerId == 0 || passengerLName.trim().length() == 0
+				|| Passport.trim().length() == 0) 
 		{
 			
-			throw new IllegalArgumentException("passenger Id, passenger First Name  & passenger lat Name  Cannot be blank");
+			throw new IllegalArgumentException("passenger Id, Passport and passenger Last Name  Cannot be blank");
 		}
 		this.passengerId = passengerId;
-		this.passengerFName = passengerFName;
 		this.passengerLName = passengerLName;
+		this.Passport = Passport;
 	}
 
-	public Passenger(Integer passengerId, String passengerFName, String passengerLName, String address,
+	public Passenger(Integer passengerId , String Passport, String passengerFName, String passengerLName, String address,
 			String mobileNumber, Date dOB) throws IllegalArgumentException {
 		super();
 		
 	
-		if(passengerId == 0 || passengerFName.trim().length() == 0
-				|| passengerLName.trim().length() == 0) 
+		if(passengerId == 0 || passengerLName.trim().length() == 0
+				|| Passport.trim().length() == 0) 
 		{
 			
-			throw new IllegalArgumentException("passenger Id, passenger First Name  & passenger lat Name  Cannot be blank");
+			throw new IllegalArgumentException("passenger Id, Passport and passenger Last Name  Cannot be blank");
 		}
 		this.passengerId = passengerId;
 		this.passengerFName = passengerFName;
@@ -36,10 +44,7 @@ public class Passenger {
 		DOB = dOB;
 	}
 
-	private Integer passengerId;
-	private String  passengerFName;
-	private String  passengerLName;
-	private String  Passport;
+	
 	public String getPassport() {
 		return Passport;
 	}
@@ -48,9 +53,8 @@ public class Passenger {
 		Passport = passport;
 	}
 
-	private String  address;
-	private String  mobileNumber;
-	private Date  DOB;
+
+	
 	
 	public Integer getPassengerId() {
 		return passengerId;

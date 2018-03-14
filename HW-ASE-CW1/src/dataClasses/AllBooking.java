@@ -16,48 +16,7 @@ private HashMap<String,Booking> bookingList;
 	}
 		
 	
-	public Booking IsValidBooking(String BookingReference,String PassengerLName) throws  IllegalStateException
-	{		
-		if(BookingReference.trim().length()==0 || !BookingReference.toUpperCase().matches("^[A-Za-z]{3}[0-9]{3}\\z"))
-		{
-			throw new IllegalStateException("Booking Reference must be 3 characters followed by 3 digits");
-			
-		}
-		Booking a = bookingList.get(BookingReference.toUpperCase());
-		if(a!=null)
-		{		
-			
-			/* Modified by Amer*/
-			if (a.IsCheckedIn()==false) {
-				
-			if(a.getPassenger().getPassengerLName().toLowerCase().equals(PassengerLName.toLowerCase()))
-			{
-				return a;		
-			}
-			else
-			{
-				throw new IllegalStateException("Not a valid passenger name");
-			}}else
-			{
-				throw new IllegalStateException("passenger has already checked-in");
-			}
-		}
-		return null;
-		
-	}
-	/* Added by Amer*/
-	public boolean  IsValidBookingReference(String BookingReference) throws  IllegalStateException
-	{		
-		if(BookingReference.trim().length()==0 || !BookingReference.toUpperCase().matches("^[A-Za-z]{3}[0-9]{3}\\z"))
-		{
-			throw new IllegalStateException("Booking Reference must be 3 characters followed by 3 digits");
-			
-		}
-		
-		
-		return true;
-		
-	}
+	
 	/* Added by Amer*/
 	public boolean  IsValidFlightCode(String FlightCode) throws  IllegalStateException
 	{		
@@ -86,13 +45,7 @@ private HashMap<String,Booking> bookingList;
 		
 	}
 	
-	public void Add(Booking a) throws Exception
-	{		
-		/* Modified by Amer*/
-		if (IsValidBookingReference(a.getBookingReference()))
-			if (IsValidFlightCode(a.getFlight().getFlightCode()))
-		bookingList.put(a.getBookingReference(), a);	
-	}
+	
 	
 	public String BookingDetails()
 	{

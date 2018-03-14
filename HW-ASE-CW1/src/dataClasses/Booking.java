@@ -1,35 +1,36 @@
 package dataClasses;
 
+import java.util.Date;
+
 import exception.*;
 public class Booking {
 	
 	
 	private String  BookingReference;
-	
-	private String  BookingDate;
-
-	private Passenger passenger;
-//	private String  FlightCode;fsdfsdfsd fsdfs
+	private Date    BookingDate;
+    private Passenger passenger;
 	private Flight  flight;
+	
+	
+	private boolean CheckIn;
+	private Date  CheckInTime;
+
+	private Integer CheckedInWeight;
+	private String  BaggageDimension;
+	
+	
+	
+	
 	public Flight getFlight() {
 		return flight;
 	}
 	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
-
-	private boolean CheckIn;
-	
-	private String  CheckInDate;
-	private String  CheckInTime;
-	
-	private Integer CheckedInWeight;
-	private String  BaggageDimension;
-	
-	public String getBookingDate() {
+	public Date getBookingDate() {
 		return BookingDate;
 	}
-	public void setBookingDate(String bookingDate) {
+	public void setBookingDate(Date bookingDate) {
 		BookingDate = bookingDate;
 	}
 	public boolean isCheckIn() {
@@ -38,16 +39,11 @@ public class Booking {
 	public void setCheckIn(boolean checkIn) {
 		CheckIn = checkIn;
 	}
-	public String getCheckInDate() {
-		return CheckInDate;
-	}
-	public void setCheckInDate(String checkInDate) {
-		CheckInDate = checkInDate;
-	}
-	public String getCheckInTime() {
+	
+	public Date getCheckInTime() {
 		return CheckInTime;
 	}
-	public void setCheckInTime(String checkInTime) {
+	public void setCheckInTime(Date checkInTime) {
 		CheckInTime = checkInTime;
 	}
 	public void setBookingReference(String bookingReference) {
@@ -59,8 +55,8 @@ public class Booking {
 	
 
 
-	public Booking(String BookingReference, Passenger PassengerData,
-			Flight flight,boolean CheckIn) throws IllegalArgumentException
+	public Booking(String BookingReference,Date BookingDate, Passenger PassengerData,
+			Flight flight) throws IllegalArgumentException
 	{
 		
 		/* Added by Faisal*/
@@ -71,9 +67,10 @@ public class Booking {
 		}	
 		
 		this.BookingReference = BookingReference;
+		this.BookingDate = BookingDate;
 		this.passenger = PassengerData;
 		this.flight = flight;
-		this.CheckIn = CheckIn;		
+		
 				
 	}
 	public boolean IsCheckedIn() {		
@@ -155,7 +152,45 @@ public class Booking {
 	}
 	
 	
-	
+	public Booking IsValidBooking(String BookingReference,String PassengerLName) throws  IllegalStateException
+	{		
+		if(BookingReference.trim().length()==0 || !BookingReference.toUpperCase().matches("^[A-Za-z]{3}[0-9]{3}\\z"))
+		{
+			throw new IllegalStateException("Booking Reference must be 3 characters followed by 3 digits");
+			
+		}
+		
+			/* Modified by Amer*/
+			if (this.IsCheckedIn()==false) {
+				
+			if(this.getPassenger().getPassengerLName().toLowerCase().equals(PassengerLName.toLowerCase()))
+			{
+				return this;		
+			}
+			else
+			{
+				throw new IllegalStateException("Not a valid passenger name");
+			}}else
+			{
+				throw new IllegalStateException("passenger has already checked-in");
+			}
+		
+		
+		
+	}
+	/* Added by Amer*/
+	public boolean  IsValidBookingReference(String BookingReference) throws  IllegalStateException
+	{		
+		if(BookingReference.trim().length()==0 || !BookingReference.toUpperCase().matches("^[A-Za-z]{3}[0-9]{3}\\z"))
+		{
+			throw new IllegalStateException("Booking Reference must be 3 characters followed by 3 digits");
+			
+		}
+		
+		
+		return true;
+		
+	}
 	
 
 }
